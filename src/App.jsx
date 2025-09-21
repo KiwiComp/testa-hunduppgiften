@@ -1,11 +1,29 @@
 import { useState } from 'react'
+import { useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import './css/HeaderComponentStyle.css'
+import './css/FooterComponentStyle.css'
+import './css/StartPageStyle.css'
+import HeaderComponent from './components/HeaderComponent'
+import FooterComponent from './components/FooterComponent'
+import AllDogsPage from './pages/AllDogsPage'
+import { Outlet } from 'react-router'
 
 function App() {
 
   const [dogList, setDogList] = useState([]);
+  const [fourDogsList, setFourDogsList] = useState([]);
+
+
+  useEffect(() => {
+    if (dogList.length === 0) {
+      fetchFromApi()
+    }
+    console.log(dogList)
+    
+  }, [])
 
 
   const fetchFromApi = async () => {
@@ -27,23 +45,31 @@ function App() {
 
     setDogList(data.record.record);
     console.log("4. Dog list.", dogList);
+    generateFourRandomIndexes(data.record.record);
+  }
+
+  const generateFourRandomIndexes = (dogList) => {
+    const shuffled = [...dogList].sort(() => 0.5 - Math.random());
+    const listOfFourDogs = shuffled.slice(0,4);
+    setFourDogsList(listOfFourDogs);
+    console.log("Four dogs list: ", listOfFourDogs);
   }
 
 
-  return (
-    <section className='displayAllDogs'>
-      <button onClick={fetchFromApi}>Fetch</button>
-      {dogList.map((dog) => (
-        <article className='displaySingleDog' key={dog.name}>
-          <img src={dog.img} alt={dog.name} style={{ width: '200px', height: 'auto' }} />
-          <p>Name: {dog.name}</p>
-          <p>Sex: {dog.sex}</p>
-          <p>Breed: {dog.breed}</p>
-          <p>Age: {dog.age}</p>
-          <p>Owner: {dog.owner.name}</p>
-        </article>
-      ))}
-    </section>
+    return (
+      <main className='grid'>
+        <section className='header'>
+          <HeaderComponent />
+        </section>
+
+        <section className='mainContent'>
+           <Outlet context={{ fourDogsList, dogList }} />
+        </section>
+         
+        <section className='footer'>
+          <FooterComponent />
+        </section>
+      </main>
   )
 }
 

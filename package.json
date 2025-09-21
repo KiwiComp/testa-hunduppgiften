@@ -1,15 +1,19 @@
 {
   "name": "testa-hunduppgiften",
   "private": true,
+  "homepage": "https://kiwicomp.github.io/testa-hunduppgiften",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "gh-pages": "^6.3.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router": "^7.9.1"

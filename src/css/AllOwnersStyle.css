@@ -1,0 +1,59 @@
+
+
+.allOwnersPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.displaySingleOwner {
+    display: flex;
+    flex-direction: row;
+    background-color: aliceblue;
+    width: 400px;
+    height: auto;
+    justify-content: space-between;
+    padding: 1rem;
+    padding-right: 2rem;
+    margin: 1rem;
+    border-radius: 1rem;
+    border: 2px solid black;
+    align-items: center;
+}
+
+.ownerNameContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.ownersDogContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.allOwnersPage h1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    font-size: 4rem;
+}
+
+.ownerImgContainer {
+    height: 50px;
+    width: 50px;
+    border-radius: 0.5rem;
+    overflow: hidden;          
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.572);
+}
+
+.ownerImgContainer img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;        
+}
+
+.displayAllOwners h2 {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
